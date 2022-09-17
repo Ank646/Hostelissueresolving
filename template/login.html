@@ -1,0 +1,106 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title-Login</title>
+    <script src="https://kit.fontawesome.com/0d56741fa7.js" crossorigin="anonymous"></script>
+   
+</head>
+
+<body>
+    <div class="container">
+        <h1>LOGIN</h1>
+        <div class="box">
+            <form method="POST" action="/checklogin">
+                {%csrf_token%}
+                {%for message in messages %}
+                {{message}}
+                {% endfor%} <i class="fa-solid fa-user"></i>
+                <input type="text" placeholder="Username" name="username" id="username">
+        </div>
+        <div class="box">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" name="password" id="password" placeholder="password">
+        </div>
+        <div class="buttons">
+            <input type="submit" class="btn" value="LOGIN">
+            <button class="btn"><a href="/signup">Sign UP</a></button>
+    </div>
+    </div>
+
+
+
+</body>
+
+</html>
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    /* opacity: 0.5; */
+}
+body{
+    background: url("{%static 'bg.jpg'%}") no-repeat center center fixed;
+   
+    background-size: cover ;
+}
+.container{
+    position:absolute;
+    top:30%;
+    left:50%;
+    padding: 5px;
+    /* border:3px solid red; */
+}
+.container h1{
+    font-size: 4rem;
+    margin-bottom: 7%;
+    padding:17px 0px;
+    color:floralwhite;
+}
+.box{
+    width:100%;
+}
+.box input{
+    color:black;
+    border-radius: 12%;
+    width:80%;
+   outline: none;
+   font-size: 1.3rem;
+   margin:12px 0px;  /* //y and x */
+   padding:5px 0px;
+   /* border-bottom: 2px solid black; */
+
+}
+.btn{
+cursor: pointer;
+outline:none;
+width:35%;
+margin:5px 15px; 
+padding:6px;
+border-radius:15%;
+}
+.btn:hover{
+    background-color:grey;
+    color:black;
+}
+.buttons{
+    margin:0px 15px;
+    padding: 0 20px;
+}   
+.box i{
+    color: rgb(0, 0, 0);
+    margin:12px 0px;  /* //y and x */
+    padding:5px 0px;
+     width:25px; 
+     text-align: center;
+     justify-content: center;
+}
+.btn a{
+    text-decoration: none;
+    color:black;
+}</style>
