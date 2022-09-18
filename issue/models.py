@@ -1,5 +1,6 @@
 
 # Create your models here.
+from pickle import FALSE
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
@@ -17,7 +18,8 @@ class Student(models.Model):
     floor= models.CharField(max_length=10)
     mobno= models.CharField(max_length=10)
     name= models.CharField(max_length=10)
-class issue(models.Model):
+
+class issueee(models.Model):
     complain=models.CharField(max_length=100)
     description= models.CharField(max_length=2000)
     hostelname= models.CharField(max_length=10)
@@ -26,7 +28,7 @@ class issue(models.Model):
     name= models.CharField(max_length=100)
     date= models.DateTimeField(auto_now_add=True)
     count=models.CharField(max_length=100)
-   
+    status=models.BooleanField(default=False)
 
     
     

@@ -6,101 +6,122 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title-Login</title>
+    <title>Login</title>
     <script src="https://kit.fontawesome.com/0d56741fa7.js" crossorigin="anonymous"></script>
    
 </head>
 
 <body>
-    <div class="container">
-        <h1>LOGIN</h1>
-        <div class="box">
-            <form method="POST" action="/checklogin">
-                {%csrf_token%}
+<div class="login">
+    <div class="login-triangle"></div>
+    
+    <h2 class="login-header">Log in</h2>
+  
+    <form class="login-container" action="/checklogin" method="POST">
+        {%csrf_token%}
                 {%for message in messages %}
                 {{message}}
-                {% endfor%} <i class="fa-solid fa-user"></i>
-                <input type="text" placeholder="Username" name="username" id="username">
-        </div>
-        <div class="box">
-            <i class="fa-solid fa-lock"></i>
-            <input type="password" name="password" id="password" placeholder="password">
-        </div>
-        <div class="buttons">
-            <input type="submit" class="btn" value="LOGIN">
-            <button class="btn"><a href="/signup">Sign UP</a></button>
-    </div>
-    </div>
+                {% endfor%} 
+      <p> <i class="fa-solid fa-user"></i>
+        <input type="text" name="username" required placeholder="Username"></p>
+      <p> <i class="fa-solid fa-lock"></i>
+        <input type="password" required name="password" placeholder="Password"></p>
+      <p><input type="submit" value="Log in"></p>
+      <button class="btn"><a href="/signup">Sign UP</a></button>
+  
+    </form>
+  </div>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
+body {
+  background: #456;
+  font-family: 'Open Sans', sans-serif;
+}
 
+.login {
+  width: 400px;
+  margin: 16px auto;
+  font-size: 16px;
+}
 
-</body>
+.login-header,
+.login p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 
-</html>
-<style>
+.login-triangle {
+  width: 0;
+  margin-right: auto;
+  margin-left: auto;
+  border: 12px solid transparent;
+  border-bottom-color: #28d;
+}
 
-*{
-    margin:0;
-    padding:0;
-    /* opacity: 0.5; */
+.login-header {
+  background: #28d;
+  padding: 20px;
+  font-size: 1.4em;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
 }
-body{
-    background: url("{%static 'bg.jpg'%}") no-repeat center center fixed;
-   
-    background-size: cover ;
-}
-.container{
-    position:absolute;
-    top:30%;
-    left:50%;
-    padding: 5px;
-    /* border:3px solid red; */
-}
-.container h1{
-    font-size: 4rem;
-    margin-bottom: 7%;
-    padding:17px 0px;
-    color:floralwhite;
-}
-.box{
-    width:100%;
-}
-.box input{
-    color:black;
-    border-radius: 12%;
-    width:80%;
-   outline: none;
-   font-size: 1.3rem;
-   margin:12px 0px;  /* //y and x */
-   padding:5px 0px;
-   /* border-bottom: 2px solid black; */
 
+.login-container {
+  background: #ebebeb;
+  padding: 12px;
 }
-.btn{
-cursor: pointer;
-outline:none;
-width:35%;
-margin:5px 15px; 
-padding:6px;
-border-radius:15%;
+
+.login p {
+  padding: 12px;
 }
-.btn:hover{
-    background-color:grey;
-    color:black;
+
+.login input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  padding: 16px;
+  outline: 0;
+  font-family: inherit;
+  font-size: 0.95em;
 }
-.buttons{
-    margin:0px 15px;
-    padding: 0 20px;
-}   
-.box i{
-    color: rgb(0, 0, 0);
-    margin:12px 0px;  /* //y and x */
-    padding:5px 0px;
-     width:25px; 
-     text-align: center;
-     justify-content: center;
+
+.login input[type="email"],
+.login input[type="password"] {
+  background: #fff;
+  border-color: #bbb;
+  color: #555;
 }
-.btn a{
-    text-decoration: none;
-    color:black;
-}</style>
+
+/* Text fields' focus effect */
+.login input[type="email"]:focus,
+.login input[type="password"]:focus {
+  border-color: #888;
+}
+
+.login input[type="submit"] {
+  background: #28d;
+  border-color: transparent;
+  color: #fff;
+  display:inline-block;
+  cursor: pointer;
+}
+a{
+    width: 400px;
+  margin: 16px auto;
+  font-size: 16px;
+text-decoration: none;
+}
+.login input[type="submit"]:hover{
+  background: #17c;
+}
+
+/* Buttons' focus effect */
+.login input[type="submit"]:focus{
+  border-color: #05a;
+}
+  </style>

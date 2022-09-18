@@ -56,12 +56,40 @@
             </div>
         </div>
     </div>
-    <!-- End -->
 
-    <!-- Main -->
+    <!-- Main<!--HTML ELEMENTS REMOVES THE LAST WORD OF THE URL AND ADD IN THE REMAINING.DJANGO URL ADDS AT THE VERY BEGINNING  -->
+-->
     <div class="main">
-        <h2>UPLOAD ISSUES</h2>
-        <div class="card">
+        <form method="post" action="issue/add">{%csrf_token%}
+            <label>Hostel no: </label> <br>
+            <input type="text" name="hno" placeholder="" /> <br>
+            <label> Floor no: </label> </br>
+            <input type="text" name="fl" placeholder="" /><br>
+            <label> Room no: </label> </br>
+            <input type="text" name="rm" placeholder="" />
+          <br>
+          <label> Type of issue: </label> </br>
+         <select name="type" id="er">
+            <option value="carpentary">Carpentary</option>
+        
+            <option value="electrician">Electrician</option>
+            <option value="plumbing">Plumbing</option>
+            
+
+         </select>
+
+          <br>
+          <label> Issue: </label> </br>
+        <textarea name="txtarea" class="text" cols="30" rows="10"></textarea>
+        <br>
+        
+          <input type="submit" class="button" value="Lodge complain">
+          </form>
+          {% for ms in messages%}
+          {{ms}}
+          {%endfor%}
+        <!-- <div class="card">
+            
             <div class="card-body">
                 <i class="fa fa-pen fa-xs edit"></i>
                 <table>
@@ -70,7 +98,7 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div>-->
 
         
     </div>
@@ -78,17 +106,74 @@
 </body>
 </html>
 <style>
+
     /* Import Font Dancing Script */
 @import url(https://fonts.googleapis.com/css?family=Dancing+Script);
-
 * {
     margin: 0;
 }
 
+body{
+  background: #000070;
+}
+
+form{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background:transparent;
+  padding: 100px;
+}
+
+label{
+ font-family: sans-serif;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  font-size: .8em;
+  color: #FFF;
+}
+#er{
+    font-size:25px;
+    color:black;
+}
+#er,.text,input[type=text]{
+  display: inline-block;
+  border: none;
+  text-align: left;
+  box-shadow: 3px 2px rgba(121, 83, 210,.3 );
+  padding: 10px;
+  width: 350px;
+  margin: 10px 0;
+  background: transparent;
+  color: #FFF;
+}
+
+input[type=text]:focus{
+  background: none;
+  border: none;
+  color: #FFF;
+}
+
+.button{
+  background: transparent;
+  color: #FFF;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin: 20px 0;
+  padding: 10px 30px;
+  border: 2px solid #FFF;
+}
+
+.button:hover{
+  background: transparent;
+  border: 2px solid rgba(69, 39, 160, .4);
+}
 body {
     background-color: #1a1d20;
     font-family: Arial;
-    overflow: hidden;
+    
 }
 
 /* NavbarTop */
@@ -222,7 +307,7 @@ body {
     background-color: #fff;
     border-radius: 18px;
     box-shadow: 1px 1px 8px 0 grey;
-    height: auto;
+   /* height: auto; */
     margin-bottom: 20px;
     padding: 20px 0 20px 50px;
 }
@@ -230,7 +315,7 @@ body {
 .main .card table {
     border: none;
     font-size: 16px;
-    height: 270px;
+    /* height: 270px; */
     width: 80%;
 }
 

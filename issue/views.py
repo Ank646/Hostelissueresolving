@@ -1,6 +1,6 @@
 from email import message
 from django.shortcuts import render,redirect
-from .models import Student,issue
+from .models import Student,issueee
 from django.contrib import messages
 import uuid
 from django.contrib.auth.models import User
@@ -71,12 +71,31 @@ def profile(request,name):
     mobile=u.mobno
 
     return render(request,"profile.html",{'time':time,'name':name,'username':username,'room':room,'floor':floor,'hostel':hostel,'mobile':mobile,'email':email})
+def d(request,name):
+    if request.method=="POST":
+        hostelname=request.POST.get('hno')
+        room=request.POST.get('rm')
+        floor=request.POST.get('fl')
+        type=request.POST.get('type')
+        des=request.POST.get('txtarea')
+        y=issueee.objects.create(hostelname=hostelname,room=room,description=des,complain=type,name=name)
+        y.save()
+        messages.info(request,"Your request is successfully registered")
+    return redirect("/"+name+"/issues")#if slash is before url it will get added after the mainpage, but if there are no slash and there should be dynamic url then it gets added as per html means after removal of previous element
+
+   
 def issue(request,name):
     return render(request,"issues.html",{'name':name})
 def uissue(request,name):
-    return render(request,"uissues.html",{'name':name})
+    ui=issueee.objects.all
+    return render(request,"uissues.html",{'issue':ui,'name':name})
+   
 def warden(request):
-    return render(request,"warden.html")
+    ui=issueee.objects.filter(status=False)
+    ui2=issueee.objects.filter(status=True)
+    ui=len(ui)
+    ui2=len(ui2)
+    return render(request,"warden.html",{'issue':ui,'resolved':ui2})
 def wardencomplains(request):
     return render(request,"complains.html")
 def recentissue(request):
